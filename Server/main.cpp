@@ -1,4 +1,6 @@
 #include "BlockChain.hpp"
+#include <iostream>
+#include <fstream>
 
 int main() {
     BlockChain chain = BlockChain();
@@ -11,6 +13,15 @@ int main() {
  
     cout << "Mining block 3..." << endl;
     chain.addBlock(Block(3, "Block 3 Data"));
-    
+
+    ofstream debugFile;
+    debugFile.open("debugChain.txt");
+    for (Block block : chain.getChain()) {
+        debugFile << "PrevHash " << block.prevHash << endl;
+        debugFile << "Data: " << block.getData() << endl;
+        debugFile << "CurrHash " << block.getHash() << endl;
+        debugFile << endl;
+    }
+    debugFile.close();
     return 0;
 }

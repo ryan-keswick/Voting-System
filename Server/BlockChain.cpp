@@ -22,3 +22,7 @@ void BlockChain::addBlock(Block newBlock) {
 Block BlockChain::_getLastBlock() const {
     return _chain.back();
 }
+
+vector<Block> BlockChain::getChain() {
+    return _chain;
+}

@@ -13,6 +13,7 @@ class Block {
         Block(uint32_t indexIn, const string &dataIn);
         string getHash();
         void mineBlock(uint32_t difficulty);
+        string getData() const;
 
     private:
         uint32_t _index;

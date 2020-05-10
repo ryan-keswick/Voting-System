@@ -11,6 +11,7 @@ class BlockChain {
     public:
         BlockChain();
         void addBlock(Block newBlock);
+        vector<Block> getChain();
 
     private:
         uint32_t _difficulty;

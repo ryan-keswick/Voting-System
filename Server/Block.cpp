@@ -10,6 +10,7 @@
 Block::Block(uint32_t indexIn, const string &dataIn) {
     _nonce = -1;
     _time = time(nullptr);
+    _data = dataIn;
 }
 
 /**
@@ -58,4 +59,8 @@ inline string Block::_calculateHash() const {
     stringstream ss;
     ss << _index << _time << _data << _nonce << prevHash;
     return sha256(ss.str());
+}
+
+string Block::getData() const {
+    return _data;
 }
