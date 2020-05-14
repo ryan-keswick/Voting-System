@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS = -g -Wall
 
-server: src/Block.o src/BlockChain.o src/user.o src/miner.o src/sha256/sha256.o 
+server: src/Block.o src/BlockChain.o src/user.o src/miner.o src/sha256/sha256.o src/Networking/listener.o src/Networking/talker.o
 	$(CC) $(CFLAGS) -o miner.exe src/Block.o src/BlockChain.o src/miner.o src/sha256/sha256.o
 	$(CC) $(CFLAGS) -o user.exe src/Block.o src/BlockChain.o src/user.o src/sha256/sha256.o
 
@@ -20,5 +20,13 @@ BlockChain.o: BlockChain.cpp
 sha256.o: src/sha256/sha256.cpp
 	$(CC) $(CFLAGS) -c src/sha256/sha256.cpp 
 
+talker.o: src/Networking/talker.cpp
+	$(CC) $(CFLAGS) -c src/Networking/talker.cpp 
+
+listener.o: src/Networking/listener.cpp
+	$(CC) $(CFLAGS) -c src/Networking/listener.cpp 
+
+
 clean:
-	$(RM) *.exe src/*.txt src/*.o *.o src/sha256/*.o
+	find . -name "*.o" -type f -delete	
+	find . -name "*.exe" -type f -delete	
