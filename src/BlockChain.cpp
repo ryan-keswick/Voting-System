@@ -5,7 +5,9 @@
  *  The higher the difficulty number it is the longer it takes to mine 
  */
 BlockChain::BlockChain() {
-    _chain.emplace_back(Block(0, "Genesis Block"));
+    Block block;
+    block.addData("Genesis Block");
+    _chain.emplace_back(block);
     _difficulty = 4;
 }
 
@@ -15,7 +17,7 @@ BlockChain::BlockChain() {
  */
 void BlockChain::addBlock(Block newBlock) {
     newBlock.prevHash = _getLastBlock().getHash();
-    newBlock.mineBlock(_difficulty);
+    newBlock.mineBlock();
     _chain.push_back(newBlock);
 }
 

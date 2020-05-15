@@ -18,7 +18,7 @@ Talker::Talker()
 	}
 }
 
-bool Talker::openSocket()
+bool Talker::openSock()
 {
 	// loop through all the results and make a socket
 	for(_p = _servinfo; _p != NULL; _p = _p->ai_next) {
@@ -49,7 +49,7 @@ int Talker::sendData(string message)
 	return numbytes;
 }
 
-bool Talker::closeSocket()
+bool Talker::closeSock()
 {
 	freeaddrinfo(_servinfo);
 	close(_sockfd);

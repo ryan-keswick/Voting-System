@@ -22,6 +22,8 @@ class Listener {
     public:
         Listener();
         string getData();
+        void closeSock();
+        bool openSock();
 
     private:
         void *get_in_addr(struct sockaddr *sa);
@@ -31,8 +33,6 @@ class Listener {
         struct sockaddr_storage _their_addr;
         int _rv;
         string _hostName;
-        void closeSock();
-        bool openSock();
 };
 
 #endif

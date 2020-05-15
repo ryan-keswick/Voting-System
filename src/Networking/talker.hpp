@@ -21,8 +21,8 @@ class Talker {
     public:
         Talker();
         int sendData(string message);
-        bool closeSocket();
-        bool openSocket();
+        bool closeSock();
+        bool openSock();
 
 
     private:

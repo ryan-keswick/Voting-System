@@ -4,16 +4,20 @@
 #include <cstdint> 
 #include <iostream>
 #include <sstream>
+#include <algorithm>
+#include <bits/stdc++.h> 
 
 using namespace std;
 
 class Block {
     public:
         string prevHash;
-        Block(uint32_t indexIn, const string &dataIn);
+        Block();
         string getHash();
-        void mineBlock(uint32_t difficulty);
-        string getData() const;
+        string getData();
+        void mineBlock();
+        int transactions();
+        void addData(string data);
 
     private:
         uint32_t _index;

@@ -4,13 +4,10 @@
 /**
  * @brief The constructor when a new block is created 
  * 
- * @param indexIn 
- * @param dataIn    The data to be put in the new block 
  */
-Block::Block(uint32_t indexIn, const string &dataIn) {
+Block::Block() {
     _nonce = -1;
     _time = time(nullptr);
-    _data = dataIn;
 }
 
 /**
@@ -33,7 +30,8 @@ string Block::getHash() {
  * 
  * @param difficulty 
  */
-void Block::mineBlock(uint32_t difficulty) {
+void Block::mineBlock() {
+    int difficulty = 4;
     char strDiff[difficulty + 1];
     for (uint32_t i = 0; i < difficulty; ++i) {
         strDiff[i] = '0';
@@ -57,10 +55,22 @@ void Block::mineBlock(uint32_t difficulty) {
  */
 inline string Block::_calculateHash() const {
     stringstream ss;
-    ss << _index << _time << _data << _nonce << prevHash;
+    ss << _time << _data << _nonce << prevHash;
     return sha256(ss.str());
 }
 
-string Block::getData() const {
+string Block::getData()
+{
     return _data;
 }
+
+int Block::transactions()
+{
+    return count(_data.begin(), _data.end(), '\n');
+}
+
+void Block::addData(string data)
+{
+    _data += data + '\n';
+}
+

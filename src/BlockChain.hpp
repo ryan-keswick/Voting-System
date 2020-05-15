@@ -1,9 +1,9 @@
+#include "Block.hpp"
 #ifndef BLOCKCHAIN_H
 #define BLOCKCHAIN_H
 
 #include <cstdint>
 #include <vector>
-#include "Block.hpp"
 
 using namespace std;
 

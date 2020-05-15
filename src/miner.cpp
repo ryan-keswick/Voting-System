@@ -1,22 +1,12 @@
-#include "BlockChain.hpp"
-#include <iostream>
-#include <fstream>
+#include "miner.hpp"
 
 int main() {
-    BlockChain chain = BlockChain();
-
-    cout << "Mining block 1..." << endl;
-    chain.addBlock(Block(1, "Block 1 Data"));
-
-    cout << "Mining block 2..." << endl;
-    chain.addBlock(Block(2, "Block 2 Data"));
- 
-    cout << "Mining block 3..." << endl;
-    chain.addBlock(Block(3, "Block 3 Data"));
+    Miner miner;
 
     ofstream debugFile;
     debugFile.open("debugChain.txt");
-    for (Block block : chain.getChain()) {
+
+    for (Block block : miner.getLedger().getChain()) {
         debugFile << "PrevHash " << block.prevHash << endl;
         debugFile << "Data: " << block.getData() << endl;
         debugFile << "CurrHash " << block.getHash() << endl;
@@ -24,4 +14,58 @@ int main() {
     }
     debugFile.close();
     return 0;
+}
+
+Miner::Miner()
+{
+    _minerId = 1;
+    
+    
+    startMining();
+}
+
+bool Miner::connectToNetwork()
+{
+    return _listener.openSock();
+}
+
+void Miner::startMining()
+{
+    for (bool i = connectToNetwork(); i != true; i = connectToNetwork())
+    {
+        cout << "Connecting... " << endl;
+    }
+    int i = 0;
+    while (i != 1)
+    {
+        string data = _listener.getData();
+        if (addDataToBlock(data, _blockToAdd))
+        {
+            _blockToAdd.mineBlock();
+            sendBlock();
+        }
+    }
+}
+
+void Miner::sendBlock()
+{
+    // TODO send block for others to add to their ledger
+}
+
+bool Miner::addDataToBlock(string data, Block block)
+{
+    block.addData(data);
+    if (block.transactions() == 10)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+BlockChain Miner::getLedger()
+{
+    return _ledger;
 }
