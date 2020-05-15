@@ -13,6 +13,10 @@ class Miner {
         int getMinerId();
         BlockChain getLedger();
 
+
+        void Debug();
+
+
     private:
         bool connectToNetwork();
         void startMining();

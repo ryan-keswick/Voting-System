@@ -3,17 +3,21 @@
 int main() {
     Miner miner;
 
+    return 0;
+}
+
+
+void Miner::Debug()
+{
     ofstream debugFile;
     debugFile.open("debugChain.txt");
 
-    for (Block block : miner.getLedger().getChain()) {
+    for (Block block : _ledger.getChain()) {
         debugFile << "PrevHash " << block.prevHash << endl;
         debugFile << "Data: " << block.getData() << endl;
         debugFile << "CurrHash " << block.getHash() << endl;
-        debugFile << endl;
     }
     debugFile.close();
-    return 0;
 }
 
 Miner::Miner()
@@ -38,12 +42,13 @@ void Miner::startMining()
     int i = 0;
     while (i != 1)
     {
-        string data = _listener.getData();
-        if (addDataToBlock(data, _blockToAdd))
-        {
-            _blockToAdd.mineBlock();
-            sendBlock();
-        }
+        string data = _listener.getData() + '\n';
+        _blockToAdd.clear();
+        _blockToAdd.addData(data);
+        _blockToAdd.mineBlock();
+        _ledger.addBlock(_blockToAdd);
+        Debug();
+        sendBlock();
     }
 }
 
@@ -55,7 +60,7 @@ void Miner::sendBlock()
 bool Miner::addDataToBlock(string data, Block block)
 {
     block.addData(data);
-    if (block.transactions() == 10)
+    if (block.transactions() == 1)
     {
         return true;
     }

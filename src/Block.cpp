@@ -74,3 +74,7 @@ void Block::addData(string data)
     _data += data + '\n';
 }
 
+void Block::clear()
+{
+    _data = "";
+}

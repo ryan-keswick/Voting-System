@@ -15,6 +15,7 @@ class Block {
         Block();
         string getHash();
         string getData();
+        void clear();
         void mineBlock();
         int transactions();
         void addData(string data);

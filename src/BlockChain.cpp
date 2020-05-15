@@ -17,7 +17,9 @@ BlockChain::BlockChain() {
  */
 void BlockChain::addBlock(Block newBlock) {
     newBlock.prevHash = _getLastBlock().getHash();
-    newBlock.mineBlock();
+    /**
+     * Check if block is valid
+     */
     _chain.push_back(newBlock);
 }
 
