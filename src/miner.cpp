@@ -14,8 +14,8 @@ void Miner::Debug()
 
     for (Block block : _ledger.getChain()) {
         debugFile << "PrevHash " << block.prevHash << endl;
-        debugFile << "Data: " << block.getData() << endl;
         debugFile << "CurrHash " << block.getHash() << endl;
+        debugFile << "Data: " << block.getData() << endl;
     }
     debugFile.close();
 }
