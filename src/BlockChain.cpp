@@ -8,7 +8,7 @@ BlockChain::BlockChain() {
     Block block;
     block.addData("Genesis Block");
     _chain.emplace_back(block);
-    _difficulty = 4;
+    _difficulty = 3;
 }
 
 /**
@@ -30,3 +30,4 @@ Block BlockChain::_getLastBlock() const {
 vector<Block> BlockChain::getChain() {
     return _chain;
 }
+

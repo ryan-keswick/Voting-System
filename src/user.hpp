@@ -13,7 +13,7 @@ class User {
         int getUserId();
         BlockChain getLedger();
         bool connectToNetwork();
-        bool sendData(string data);
+        void sendData(string data);
 
     private:
         int _userId;

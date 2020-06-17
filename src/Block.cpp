@@ -31,7 +31,7 @@ string Block::getHash() {
  * @param difficulty 
  */
 void Block::mineBlock() {
-    int difficulty = 4;
+    int difficulty = 3;
     char strDiff[difficulty + 1];
     for (uint32_t i = 0; i < difficulty; ++i) {
         strDiff[i] = '0';

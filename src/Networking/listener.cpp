@@ -74,7 +74,6 @@ void *Listener::get_in_addr(struct sockaddr *sa)
 
 string Listener::getData()
 {
-    printf("\n\n\nlistener: waiting to recvfrom..\n");
     int numbytes;
     char buf[MAXBUFLEN];
     char s[INET6_ADDRSTRLEN];
@@ -86,13 +85,6 @@ string Listener::getData()
         exit(1);
     }
 
-    printf("listener: got packet from %s\n", 
-            inet_ntop(_their_addr.ss_family, 
-                get_in_addr((struct sockaddr *)&_their_addr), 
-                s, sizeof s));
-
-    printf("listener: packet is %d bytes long\n", numbytes);
     buf[numbytes] = '\0';
-    printf("listener: packet contains \"%s\"\n", buf);
     return buf;
 }

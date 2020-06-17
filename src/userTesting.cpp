@@ -6,11 +6,7 @@ int main() {
     string data;
     user.connectToNetwork();
     cin >> data;
-    while (data.compare("end") != 0) 
-    {
-        user.sendData(data);
-        cin >> data;
-    }
+    user.sendData(data);
     return 0;
 }
 
